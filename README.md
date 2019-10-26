@@ -1,2 +1,2 @@
-# EasyFinance_RESTService
+# EasyFinance RESTfull Api
 REST Service
