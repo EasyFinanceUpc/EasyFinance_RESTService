@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{EA0E6480-698A-49C9-ABD7-1E95654EEBFF}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="EasyFinanceApi" expanded="True">
+            <Node name="EasyFinanceApi" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Persistence" expanded="True">
+                <Node name="Context" expanded="True">
+                  <Node name="AppDbContext.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.EasyFinanceApi FirstBuild="True" PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
