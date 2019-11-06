@@ -1,17 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using EasyFinanceApi.Domain.Repositories;
+using EasyFinanceApi.Domain.Services;
 using EasyFinanceApi.Persistence.Context;
+using EasyFinanceApi.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+
+using AutoMapper;
 
 namespace EasyFinanceApi
 {
@@ -27,8 +26,12 @@ namespace EasyFinanceApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
             services.AddControllers();
+            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
