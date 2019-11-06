@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/daniel/Git_Proyects/EasyFinance_RESTfulApi/EasyFinanceApi/EasyFinanceApi.csproj": {}
+    "D:\\Git\\EasyFinance_RESTfulApi\\EasyFinanceApi\\EasyFinanceApi.csproj": {}
   },
   "projects": {
-    "/Users/daniel/Git_Proyects/EasyFinance_RESTfulApi/EasyFinanceApi/EasyFinanceApi.csproj": {
+    "D:\\Git\\EasyFinance_RESTfulApi\\EasyFinanceApi\\EasyFinanceApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/daniel/Git_Proyects/EasyFinance_RESTfulApi/EasyFinanceApi/EasyFinanceApi.csproj",
+        "projectUniqueName": "D:\\Git\\EasyFinance_RESTfulApi\\EasyFinanceApi\\EasyFinanceApi.csproj",
         "projectName": "EasyFinanceApi",
-        "projectPath": "/Users/daniel/Git_Proyects/EasyFinance_RESTfulApi/EasyFinanceApi/EasyFinanceApi.csproj",
-        "packagesPath": "/Users/daniel/.nuget/packages/",
-        "outputPath": "/Users/daniel/Git_Proyects/EasyFinance_RESTfulApi/EasyFinanceApi/obj/",
+        "projectPath": "D:\\Git\\EasyFinance_RESTfulApi\\EasyFinanceApi\\EasyFinanceApi.csproj",
+        "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
+        "outputPath": "D:\\Git\\EasyFinance_RESTfulApi\\EasyFinanceApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/daniel/.config/NuGet/NuGet.Config"
+          "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -47,6 +49,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.0.0, )"
@@ -68,6 +74,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.6.0, )"
             }
           },
           "imports": [
@@ -88,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

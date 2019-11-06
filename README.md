@@ -20,3 +20,7 @@ REST Service
 
 ALTER AUTHORIZATION ON DATABASE::EasyFinanceDb TO sa
 GO
+
+### Token example
+
+https://jasonwatmore.com/post/2019/10/11/aspnet-core-3-jwt-authentication-tutorial-with-example-api
