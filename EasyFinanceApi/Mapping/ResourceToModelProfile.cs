@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using EasyFinanceApi.Domain.Models;
 using EasyFinanceApi.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using EasyFinanceApi.Resources.ToModel;
 
 namespace EasyFinanceApi.Mapping
 {
@@ -13,7 +10,10 @@ namespace EasyFinanceApi.Mapping
         public ResourceToModelProfile()
         {
             //CreateMap<Request, Model>();
-            CreateMap<CustomerRequest, Customer>();
+            CreateMap<SignUpCustomerResource, Customer>();
+            CreateMap<SaveSubscriptionResource, Subscription>();
+            CreateMap<SignUpAdvisorResource, Advisor>();
+            CreateMap<SaveAppointmentResource, Appointment>();
         }
     }
 }

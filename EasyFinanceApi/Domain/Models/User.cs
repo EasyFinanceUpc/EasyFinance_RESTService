@@ -21,12 +21,10 @@ namespace EasyFinanceApi.Domain.Models
         [MinLength(6)]
         public string Password { get; set; }
 
-        [Required]
         [MaxLength(60)]
         [MinLength(3)]
         public string Name { get; set; }
 
-        [Required]
         [MaxLength(60)]
         [MinLength(3)]
         [Column("Last_Name")]

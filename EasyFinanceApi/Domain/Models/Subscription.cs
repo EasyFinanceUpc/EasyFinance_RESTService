@@ -15,7 +15,7 @@ namespace EasyFinanceApi.Domain.Models
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         [DisplayFormat(DataFormatString = "{0:N}")]
-        [Range(0.01, 30.00)]
+        [Range(0.01, 120.00)]
         public decimal Price { get; set; }
         [Required]
         [Column("Number_User")]

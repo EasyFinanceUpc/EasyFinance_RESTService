@@ -4,21 +4,14 @@
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="EasyFinanceApi" expanded="True">
-            <Node name="EasyFinanceApi" expanded="True">
-              <Node name="Dependencies" expanded="True" />
-              <Node name="Persistence" expanded="True">
-                <Node name="Context" expanded="True">
-                  <Node name="AppDbContext.cs" selected="True" />
-                </Node>
-              </Node>
-            </Node>
+            <Node name="EasyFinanceApi" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.EasyFinanceApi FirstBuild="True" PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.EasyFinanceApi PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
