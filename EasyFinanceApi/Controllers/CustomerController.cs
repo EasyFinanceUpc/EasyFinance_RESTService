@@ -57,7 +57,7 @@ namespace EasyFinanceApi.Controllers
         {
             var token = Request.Headers["Authorization"];
 
-            return Ok(token + " ");
+            return Ok("bearer " + token);
         }
     }
 }
