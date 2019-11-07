@@ -1,10 +1,27 @@
 ﻿<Properties StartupConfiguration="{EA0E6480-698A-49C9-ABD7-1E95654EEBFF}|Default">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Domain/Services/Communication/SaveCustomerResponse.cs">
+    <Files>
+      <File FileName="Controllers/CustomerController.cs" Line="60" Column="31" />
+      <File FileName="Startup.cs" Line="84" Column="15" />
+      <File FileName="Program.cs" Line="23" Column="49" />
+      <File FileName="Controllers/WeatherForecastController.cs" Line="15" Column="58" />
+      <File FileName="Domain/Services/Communication/SaveCustomerResponse.cs" Line="1" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="EasyFinanceApi" expanded="True">
-            <Node name="EasyFinanceApi" expanded="True" />
+            <Node name="EasyFinanceApi" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Domain" expanded="True">
+                <Node name="Services" expanded="True">
+                  <Node name="Communication" expanded="True">
+                    <Node name="SaveCustomerResponse.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Resources" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
