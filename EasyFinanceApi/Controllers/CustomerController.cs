@@ -34,6 +34,7 @@ namespace EasyFinanceApi.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
+
             var customer = _mapper.Map<SignUpCustomerResource, Customer>(resource);
             var result = await _customerService.SaveAsync(customer);
 
