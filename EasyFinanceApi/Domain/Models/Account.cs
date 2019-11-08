@@ -10,6 +10,7 @@ namespace EasyFinanceApi.Domain.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         [Required]
         [Column("Create_At")]
         public DateTime CreateAt { get; set; }

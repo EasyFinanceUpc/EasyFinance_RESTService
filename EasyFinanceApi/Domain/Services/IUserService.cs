@@ -1,4 +1,5 @@
-﻿using EasyFinanceApi.Resources.ToResource;
+﻿using EasyFinanceApi.Domain.Models;
+using EasyFinanceApi.Resources.ToResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;

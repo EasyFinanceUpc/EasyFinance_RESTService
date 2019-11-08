@@ -1,4 +1,5 @@
-﻿using EasyFinanceApi.Resources.Helpers;
+﻿using EasyFinanceApi.Domain.Repositories;
+using EasyFinanceApi.Resources.Helpers;
 using EasyFinanceApi.Resources.ToModel;
 using EasyFinanceApi.Resources.ToResource;
 using Microsoft.Extensions.Options;
@@ -12,25 +13,39 @@ namespace EasyFinanceApi.Domain.Services
 {
     public class UserService : IUserService
     {
-        private readonly AppSettings _appSettings;
+        //private readonly AppSettings _appSettings;
+        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserService(IOptions<AppSettings> appSettings)
+        /*public UserService(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings.Value;
+        }*/
+
+        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        {
+            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Response> Authenticate(string email, string password)
-        {
-            var response = new Response();
-            var user = new AuthenticationResource();
-            if (email != "javier@mail.com" || password != "123456")
+        { 
+            /*var user = new AuthenticationResource();
+
+            //authenticate with customer
+            //authenticate with advisor
+            //authenticate with admin
+
+            //inicio
+            if (email != "admin@admin.com" || password != "123456")
             {
                 return response;
             }
 
             user.Email = email;
             user.Password = password;
-            
+            //fin
+
             //if (user == null)
             //    return response;
 
@@ -46,7 +61,11 @@ namespace EasyFinanceApi.Domain.Services
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             response.Token = tokenHandler.WriteToken(token);
+            response.Role = 2;
 
+            return response;*/
+
+            var response = await _userRepository.Authenticate(email, password);
             return response;
         }
     }

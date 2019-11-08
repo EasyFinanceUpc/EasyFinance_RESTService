@@ -1,8 +1,7 @@
 ﻿using EasyFinanceApi.Domain.Models;
 using EasyFinanceApi.Domain.Repositories;
 using EasyFinanceApi.Persistence.Context;
-using System;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using EasyFinanceApi.Domain.Models;
@@ -15,42 +14,43 @@ namespace EasyFinanceApi.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
-    [ApiController]
-    public class CustomerController : ControllerBase
+
+    public class UsersController : ControllerBase
     {
         private readonly ICustomerService _customerService;
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        
-        public CustomerController(ICustomerService customerService, IUserService userService, IMapper mapper)
+
+        public UsersController(ICustomerService customerService, IUserService userService, IMapper mapper)
         {
             _customerService = customerService;
             _userService = userService;
             _mapper = mapper;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] SignUpCustomerResource resource)
+        [AllowAnonymous]
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody] AuthenticationResource resource)
+        {
+            var response = await _userService.Authenticate(resource.Email, resource.Password);
+            return response == null ? BadRequest(new { message = "Error login" }) : (IActionResult)Ok(response);
+            //la aplicacion web o movil se encarga de recibir el token y el rol, verifica si el rol es permitido
+        }
+
+        [AllowAnonymous]
+        [HttpPost("signup/customers")]
+        public async Task<IActionResult> SignUpCustomerAsync([FromBody] SignUpCustomerResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
             var customer = _mapper.Map<SignUpCustomerResource, Customer>(resource);
+
             var result = await _customerService.SaveAsync(customer);
 
             if (!result.Success)
                 return BadRequest(result.Message);
             return Ok();
-        }
-
-        [AllowAnonymous]
-        [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate([FromBody] AuthenticationResource resource)
-        {
-            var response = _userService.Authenticate(resource.Email, resource.Password);
-            if (response == null)
-                return BadRequest(new { message = "Error login" });
-            return Ok(response);
         }
 
         [HttpGet("test")]

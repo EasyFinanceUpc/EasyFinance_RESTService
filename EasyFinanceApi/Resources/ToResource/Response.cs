@@ -8,5 +8,6 @@ namespace EasyFinanceApi.Resources.ToResource
     public class Response
     {
         public string Token { get; set; }
+        public int Role { get; set; }
     }
 }
