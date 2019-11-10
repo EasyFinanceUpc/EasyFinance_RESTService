@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EasyFinanceApi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "1")]
     [Route("api/[controller]")]
 
     public class UsersController : ControllerBase
@@ -53,7 +53,7 @@ namespace EasyFinanceApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("signup/asesores")]
+        [HttpPost("signup/advisors")]
         public async Task<IActionResult> SignUpAdvisor([FromBody] SignUpAdvisorResource resource)
         {
             if (!ModelState.IsValid)
@@ -63,6 +63,21 @@ namespace EasyFinanceApi.Controllers
             if (!result.Success)
                 return BadRequest(result.Message);
             return Ok();
+        }
+
+        [HttpPost("signup/local")]
+        public async Task<IActionResult> SignUpLocal([FromBody] SignUpCustomerResource resource)
+        {
+             if (!ModelState.IsValid)
+                 return BadRequest(ModelState.GetErrorMessages());
+            var email = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals("Email", StringComparison.InvariantCultureIgnoreCase));
+            if (email == null)
+                return BadRequest("Not Claim");
+            var local = _mapper.Map<SignUpCustomerResource, Customer>(resource);
+            var result = await _customerService.SaveAsyncLocal(local, email.Value);
+            if (!result.Success)
+                return BadRequest(result.Message);
+            return Ok("Local Register");
         }
 
         /*

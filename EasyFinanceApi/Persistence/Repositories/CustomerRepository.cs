@@ -26,5 +26,14 @@ namespace EasyFinanceApi.Persistence.Repositories
             else
                 return false;
         }
+
+        public async Task<int> GetOwnerAccountId(string email)
+        {
+            var customers = await _context.Users.Where(x => x.Email == email).ToListAsync();
+            if (customers.Count <= 0)
+                return 0;
+            var owner = customers.FirstOrDefault();
+            return owner.Id;
+        }
     }
 }

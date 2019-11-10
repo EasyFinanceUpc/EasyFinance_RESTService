@@ -6,6 +6,6 @@ namespace EasyFinanceApi.Domain.Repositories
 {
     public interface ITokenRepository
     { 
-        string GenerateToken(string email, string password);
+        string GenerateToken(string email, int role);
     }
 }

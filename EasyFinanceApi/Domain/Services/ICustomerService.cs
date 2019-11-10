@@ -10,5 +10,6 @@ namespace EasyFinanceApi.Domain.Services
     public interface ICustomerService
     {
         Task<SaveCustomerResponse> SaveAsync(Customer customer);
+        Task<SaveCustomerResponse> SaveAsyncLocal(Customer customer, string email);
     }
 }

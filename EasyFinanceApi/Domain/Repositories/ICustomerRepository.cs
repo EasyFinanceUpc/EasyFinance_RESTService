@@ -10,5 +10,6 @@ namespace EasyFinanceApi.Domain.Repositories
     {
         Task AddAsync(Customer customer);
         Task<bool> ExistEmail(Customer customer);
+        Task<int> GetOwnerAccountId(string email);
     }
 }

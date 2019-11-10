@@ -28,9 +28,9 @@ namespace EasyFinanceApi.Persistence.Repositories
             if (user == null)
                 return response;
 
-            var token = _tokenRepository.GenerateToken(user.Email, user.Password);
+            response.Role = (int)user.Role;
+            var token = _tokenRepository.GenerateToken(user.Email, (int)user.Role);
             response.Token = token;
-            response.Role = 2;
             return response;
         }
 

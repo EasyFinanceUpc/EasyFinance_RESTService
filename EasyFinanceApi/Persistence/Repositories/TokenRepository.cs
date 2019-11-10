@@ -19,15 +19,15 @@ namespace EasyFinanceApi.Domain.Services
             _appSettings = appSettings.Value;
         }
 
-        public string GenerateToken(string email, string password)
+        public string GenerateToken(string email, int role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]{
-                    new Claim(ClaimTypes.Email, email),
-                    new Claim(ClaimTypes.Name, password)
+                    new Claim("Email", email),
+                    new Claim(ClaimTypes.Role, role.ToString())
                 }),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

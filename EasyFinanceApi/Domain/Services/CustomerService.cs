@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using EasyFinanceApi.Domain.Models;
 using EasyFinanceApi.Domain.Repositories;
 using EasyFinanceApi.Domain.Services.Communication;
+using Microsoft.AspNetCore.Http;
 
 namespace EasyFinanceApi.Domain.Services
 {
@@ -59,6 +61,29 @@ namespace EasyFinanceApi.Domain.Services
             {
                 return new SaveCustomerResponse($"An error occurred when saving the category: {ex.Message}");
             }
+        }
+
+        public async Task<SaveCustomerResponse> SaveAsyncLocal(Customer customer, string email)
+        {
+            try
+            {
+                if (await _customerRepository.ExistEmail(customer))
+                    return new SaveCustomerResponse("Email already exist");
+                if (customer.Birthday.AddYears(18) > DateTime.Now)
+                    return new SaveCustomerResponse("You must be over 18 to register");
+
+                var OwnerAccountId = await _customerRepository.GetOwnerAccountId(email);
+                customer.AccountId = OwnerAccountId;
+                customer.Active = true;
+                customer.Role = ERole.Member;
+                await _customerRepository.AddAsync(customer);
+                await _unitOfWork.CompleteAsync();
+                return new SaveCustomerResponse(customer);
+            } catch (Exception ex)
+            {
+                return new SaveCustomerResponse($"An error occurred when saving the category: {ex.Message}");
+            }
+            
         }
     }
 }
