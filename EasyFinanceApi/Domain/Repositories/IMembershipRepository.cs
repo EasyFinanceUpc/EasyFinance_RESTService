@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EasyFinanceApi.Domain.Repositories
 {
-    public interface ICustomerRepository
+    public interface IMembershipRepository
     {
-        Task AddAsync(Customer customer);
-        Task<bool> ExistEmail(Customer customer);
+        Task<DateTime> AddAsync();
+        Task<int> GetIdMembershipAsync(DateTime now);
     }
 }

@@ -17,5 +17,14 @@ namespace EasyFinanceApi.Persistence.Repositories
         {
             await _context.Users.AddAsync(customer);
         }
+
+        public async Task<bool> ExistEmail(Customer customer)
+        {
+            var customers = await _context.Users.Where(x => x.Email == customer.Email).ToListAsync();
+            if (customers.Count > 0)
+                return true;
+            else
+                return false;
+        }
     }
 }

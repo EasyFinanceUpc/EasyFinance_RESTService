@@ -34,7 +34,6 @@ namespace EasyFinanceApi.Controllers
         {
             var response = await _userService.Authenticate(resource.Email, resource.Password);
             return response == null ? BadRequest(new { message = "Error login" }) : (IActionResult)Ok(response);
-            //la aplicacion web o movil se encarga de recibir el token y el rol, verifica si el rol es permitido
         }
 
         [AllowAnonymous]
@@ -54,7 +53,7 @@ namespace EasyFinanceApi.Controllers
         }
 
         [HttpGet("test")]
-        public IActionResult Test01()
+        public async Task<IActionResult> Test01()
         {
             var token = Request.Headers["Authorization"];
 

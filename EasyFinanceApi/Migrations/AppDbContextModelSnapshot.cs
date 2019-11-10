@@ -30,6 +30,10 @@ namespace EasyFinanceApi.Migrations
                         .HasColumnName("Create_At")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Payment")
                         .HasColumnType("bit");
 
@@ -42,6 +46,7 @@ namespace EasyFinanceApi.Migrations
                         {
                             Id = 1,
                             CreateAt = new DateTime(2019, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Key = "2c8bab3c-6050-4247-bba0-77777b088388",
                             Payment = true
                         });
                 });
@@ -319,13 +324,11 @@ namespace EasyFinanceApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnName("Last_Name")
                         .HasColumnType("nvarchar(60)")
                         .HasMaxLength(60);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(60)")
                         .HasMaxLength(60);
 
@@ -416,6 +419,21 @@ namespace EasyFinanceApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasDiscriminator().HasValue("Customer");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccountId = 1,
+                            Active = true,
+                            Email = "julio@gmail.com",
+                            Gender = 1,
+                            LastName = "Gomez",
+                            Name = "Julio",
+                            Password = "123456",
+                            Role = 1,
+                            Birthday = new DateTime(2019, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("EasyFinanceApi.Domain.Models.AccountSubscription", b =>

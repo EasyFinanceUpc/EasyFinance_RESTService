@@ -39,7 +39,10 @@ namespace EasyFinanceApi.Persistence.Context
                 );
 
             builder.Entity<Account>().HasData (
-                new Account { Id = 1, CreateAt = Convert.ToDateTime("2019-11-05"), Payment = true }
+                new Account { Id = 1, Key = "2c8bab3c-6050-4247-bba0-77777b088388", CreateAt = Convert.ToDateTime("2019-11-05"), Payment = true }
+                );
+            builder.Entity<Customer>().HasData(
+                new Customer { Id = 1, AccountId = 1, Active = true, Birthday = Convert.ToDateTime("2019-11-05"), Email = "julio@gmail.com", Gender = EGender.Male, LastName = "Gomez", Name = "Julio", Password = "123456", Role = ERole.Owner}
                 );
         }
     }

@@ -22,21 +22,11 @@ namespace EasyFinanceApi.Persistence.Repositories
         public async Task<Response> Authenticate(string email, string password)
         {
             var response = new Response();
-            var user = new AuthenticationResource();
-            //var user = await FindUser(email, password);
 
-            //inicio
-            if (email != "admin@admin.com" || password != "123456")
-            {
+            var user = await FindUser(email, password);
+
+            if (user == null)
                 return response;
-            }
-
-            user.Email = email;
-            user.Password = password;
-            //fin
-
-            //if (user == null)
-            //    return response;
 
             var token = _tokenRepository.GenerateToken(user.Email, user.Password);
             response.Token = token;

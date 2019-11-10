@@ -12,8 +12,12 @@ namespace EasyFinanceApi.Domain.Models
         public int Id { get; set; }
 
         [Required]
+        public string Key { get; set; }
+        
+        [Required]
         [Column("Create_At")]
         public DateTime CreateAt { get; set; }
+        
         [Required]
         public bool Payment { get; set; }
         public IList<User> Users { get; set; } = new List<User>();

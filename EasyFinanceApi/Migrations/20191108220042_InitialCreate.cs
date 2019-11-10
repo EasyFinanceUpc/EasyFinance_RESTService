@@ -13,6 +13,7 @@ namespace EasyFinanceApi.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Key = table.Column<string>(nullable: false),
                     Create_At = table.Column<DateTime>(nullable: false),
                     Payment = table.Column<bool>(nullable: false)
                 },
@@ -86,8 +87,8 @@ namespace EasyFinanceApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(maxLength: 200, nullable: false),
                     Password = table.Column<string>(maxLength: 18, nullable: false),
-                    Name = table.Column<string>(maxLength: 60, nullable: false),
-                    Last_Name = table.Column<string>(maxLength: 60, nullable: false),
+                    Name = table.Column<string>(maxLength: 60, nullable: true),
+                    Last_Name = table.Column<string>(maxLength: 60, nullable: true),
                     Gender = table.Column<int>(nullable: false),
                     Active = table.Column<bool>(nullable: false),
                     Role = table.Column<int>(nullable: false),
@@ -235,8 +236,8 @@ namespace EasyFinanceApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Accounts",
-                columns: new[] { "Id", "Create_At", "Payment" },
-                values: new object[] { 1, new DateTime(2019, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), true });
+                columns: new[] { "Id", "Create_At", "Key", "Payment" },
+                values: new object[] { 1, new DateTime(2019, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "2c8bab3c-6050-4247-bba0-77777b088388", true });
 
             migrationBuilder.InsertData(
                 table: "Subscriptions",
@@ -248,6 +249,11 @@ namespace EasyFinanceApi.Migrations
                     { 3, "Entrepreneur", 20, 35.90m },
                     { 4, "Advisor", 1, 6.90m }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Account_Id", "Active", "Discriminator", "Email", "Gender", "Last_Name", "Name", "Password", "Role", "Token", "Birthday" },
+                values: new object[] { 1, 1, true, "Customer", "julio@gmail.com", 1, "Gomez", "Julio", "123456", 1, null, new DateTime(2019, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccountSubscriptions_Membership_Id",
