@@ -33,12 +33,15 @@ namespace EasyFinanceApi.Domain.Services
                 //if customer email dont exist return this
                 if (await _customerRepository.ExistEmail(customer))
                     return new SaveCustomerResponse("Email already exist");
+                if (customer.Birthday.AddYears(18) > DateTime.Now)
+                    return new SaveCustomerResponse("You must be over 18 to register");
+
 
                 var time = await _membershipRepository.AddAsync();
                 await _unitOfWork.CompleteAsync();
 
                 var membershipId = await _membershipRepository.GetIdMembershipAsync(time);
-                var key = await _accountRepository.AddAsync();
+                var key = await _accountRepository.AddAsync(false);
                 await _unitOfWork.CompleteAsync();
 
                 var accountId = await _accountRepository.GetIdAccountAsync(key);
@@ -46,6 +49,8 @@ namespace EasyFinanceApi.Domain.Services
                 await _unitOfWork.CompleteAsync();
 
                 customer.AccountId = accountId;
+                customer.Active = true;
+                customer.Role = ERole.Owner;
                 await _customerRepository.AddAsync(customer);
                 await _unitOfWork.CompleteAsync();
 

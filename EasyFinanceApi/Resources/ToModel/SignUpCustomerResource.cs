@@ -18,9 +18,6 @@ namespace EasyFinanceApi.Resources.ToModel
         public string Password { get; set; }
 
         [Required]
-        public bool Active { get; set; }
-
-        [Required]
         public DateTime Birthday { get; set; }
     }
 }

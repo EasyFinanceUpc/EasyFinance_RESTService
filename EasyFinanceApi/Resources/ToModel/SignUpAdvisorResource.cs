@@ -19,20 +19,13 @@ namespace EasyFinanceApi.Resources.ToModel
 
         [Required]
         [MaxLength(60)]
-        [MinLength(3)]
         public string Name { get; set; }
 
         [Required]
         [MaxLength(60)]
-        [MinLength(3)]
         public string LastName { get; set; }
 
         public int Gender { get; set; }
-
-        [Required]
-        public bool Active { get; set; }
-
-        public int Role { get; set; }
 
         [Required]
         [MaxLength(200)]
@@ -40,8 +33,7 @@ namespace EasyFinanceApi.Resources.ToModel
         public string Description { get; set; }
 
         [Required]
-        [MinLength(0)]
-        [MaxLength(60)]
+        [Range(0, 60)]
         public int Experience { get; set; }
 
         [Required]

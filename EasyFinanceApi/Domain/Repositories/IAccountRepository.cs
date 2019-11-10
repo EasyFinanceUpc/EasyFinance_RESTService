@@ -7,7 +7,7 @@ namespace EasyFinanceApi.Domain.Repositories
 {
     public interface IAccountRepository
     {
-        Task<string> AddAsync();
+        Task<string> AddAsync(bool payment);
         Task<int> GetIdAccountAsync(string Key);
     }
 }

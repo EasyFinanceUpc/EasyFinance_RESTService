@@ -13,11 +13,11 @@ namespace EasyFinanceApi.Persistence.Repositories
     {
         public AccountRepository(AppDbContext context) : base(context) { }
 
-        public async Task<string> AddAsync()
+        public async Task<string> AddAsync(bool payment)
         {
             var account = new Account();
             account.Key = Guid.NewGuid().ToString();
-            account.Payment = false;
+            account.Payment = payment;
             account.CreateAt = DateTime.Now;
             await _context.Accounts.AddAsync(account);
             return account.Key;

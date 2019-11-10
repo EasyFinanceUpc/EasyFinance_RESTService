@@ -67,6 +67,8 @@ namespace EasyFinanceApi
             services.AddScoped<IMembershipRepository, MembershipRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountSubscriptionRepository, AccountSubscriptionRepository>();
+            services.AddScoped<IAdvisorRepository, AdvisorRepository>();
+            services.AddScoped<IAdvisorService, AdvisorService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             
         }

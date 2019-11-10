@@ -11,9 +11,7 @@ namespace EasyFinanceApi.Domain.Models
         [MaxLength(200)]
         [MinLength(5)]
         public string Description { get; set; }
-
-        [MinLength(0)]
-        [MaxLength(60)]
+        [Range(0,60)]
         public int Experience { get; set; }
 
         [MinLength(3)]

@@ -19,12 +19,14 @@ namespace EasyFinanceApi.Controllers
     {
         private readonly ICustomerService _customerService;
         private readonly IUserService _userService;
+        private readonly IAdvisorService _advisorService;
         private readonly IMapper _mapper;
 
-        public UsersController(ICustomerService customerService, IUserService userService, IMapper mapper)
+        public UsersController(ICustomerService customerService, IUserService userService, IAdvisorService advisorService, IMapper mapper)
         {
             _customerService = customerService;
             _userService = userService;
+            _advisorService = advisorService;
             _mapper = mapper;
         }
 
@@ -42,9 +44,7 @@ namespace EasyFinanceApi.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
-
             var customer = _mapper.Map<SignUpCustomerResource, Customer>(resource);
-
             var result = await _customerService.SaveAsync(customer);
 
             if (!result.Success)
@@ -52,12 +52,26 @@ namespace EasyFinanceApi.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
+        [HttpPost("signup/asesores")]
+        public async Task<IActionResult> SignUpAdvisor([FromBody] SignUpAdvisorResource resource)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+            var advisor = _mapper.Map<SignUpAdvisorResource, Advisor>(resource);
+            var result = await _advisorService.SaveAsync(advisor);
+            if (!result.Success)
+                return BadRequest(result.Message);
+            return Ok();
+        }
+
+        /*
         [HttpGet("test")]
         public async Task<IActionResult> Test01()
         {
             var token = Request.Headers["Authorization"];
 
             return Ok(token + " ");
-        }
+        }*/
     }
 }
