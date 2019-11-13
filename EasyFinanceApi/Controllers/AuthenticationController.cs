@@ -15,14 +15,14 @@ namespace EasyFinanceApi.Controllers
     [Authorize(Roles = "1")]
     [Route("api/[controller]")]
 
-    public class UsersController : ControllerBase
+    public class AuthenticationController : ControllerBase
     {
         private readonly ICustomerService _customerService;
         private readonly IUserService _userService;
         private readonly IAdvisorService _advisorService;
         private readonly IMapper _mapper;
 
-        public UsersController(ICustomerService customerService, IUserService userService, IAdvisorService advisorService, IMapper mapper)
+        public AuthenticationController(ICustomerService customerService, IUserService userService, IAdvisorService advisorService, IMapper mapper)
         {
             _customerService = customerService;
             _userService = userService;
@@ -31,7 +31,7 @@ namespace EasyFinanceApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("authenticate")]
+        [HttpPost]
         public async Task<IActionResult> Authenticate([FromBody] AuthenticationResource resource)
         {
             var response = await _userService.Authenticate(resource.Email, resource.Password);
@@ -66,27 +66,26 @@ namespace EasyFinanceApi.Controllers
         }
 
         [HttpPost("signup/local")]
-        public async Task<IActionResult> SignUpLocal([FromBody] SignUpCustomerResource resource)
+        public async Task<IActionResult> SignUpLocal([FromBody] SignUpCustomerLocalResource resource)
         {
              if (!ModelState.IsValid)
                  return BadRequest(ModelState.GetErrorMessages());
             var email = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals("Email", StringComparison.InvariantCultureIgnoreCase));
             if (email == null)
                 return BadRequest("Not Claim");
-            var local = _mapper.Map<SignUpCustomerResource, Customer>(resource);
+            var local = _mapper.Map<SignUpCustomerLocalResource, Customer>(resource);
             var result = await _customerService.SaveAsyncLocal(local, email.Value);
             if (!result.Success)
                 return BadRequest(result.Message);
             return Ok("Local Register");
         }
 
-        /*
         [HttpGet("test")]
         public async Task<IActionResult> Test01()
         {
             var token = Request.Headers["Authorization"];
 
             return Ok(token + " ");
-        }*/
+        }
     }
 }

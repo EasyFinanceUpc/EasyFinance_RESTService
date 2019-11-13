@@ -1,9 +1,13 @@
-﻿using System;
+﻿using EasyFinanceApi.Domain.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EasyFinanceApi.Resources.ToModel
 {
-    public class SignUpCustomerResource
+    public class SignUpCustomerLocalResource
     {
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -18,6 +22,13 @@ namespace EasyFinanceApi.Resources.ToModel
         public string Password { get; set; }
 
         [Required]
+        [MaxLength(60)]
+        public string Name { get; set; }
+
+        [Required]
+        [MaxLength(60)]
+        public string LastName { get; set; }
+
         public int Gender { get; set; }
 
         [Required]

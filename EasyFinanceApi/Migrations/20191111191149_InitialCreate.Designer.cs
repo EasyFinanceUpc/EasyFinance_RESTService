@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyFinanceApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20191108220042_InitialCreate")]
+    [Migration("20191111191149_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,8 @@ namespace EasyFinanceApi.Migrations
 
                     b.Property<string>("Key")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<bool>("Payment")
                         .HasColumnType("bit");
@@ -152,15 +153,17 @@ namespace EasyFinanceApi.Migrations
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
 
                     b.Property<byte[]>("Image")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("image");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
 
                     b.HasKey("Id");
 
@@ -282,23 +285,6 @@ namespace EasyFinanceApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EasyFinanceApi.Domain.Models.Type", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(90)")
-                        .HasMaxLength(90);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Types");
-                });
-
             modelBuilder.Entity("EasyFinanceApi.Domain.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -379,11 +365,8 @@ namespace EasyFinanceApi.Migrations
                 {
                     b.HasBaseType("EasyFinanceApi.Domain.Models.Registry");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnName("Type_Id")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
-
-                    b.HasIndex("TypeId");
 
                     b.HasDiscriminator().HasValue("Movement");
                 });
@@ -397,8 +380,7 @@ namespace EasyFinanceApi.Migrations
                         .HasMaxLength(200);
 
                     b.Property<int>("Experience")
-                        .HasColumnType("int")
-                        .HasMaxLength(60);
+                        .HasColumnType("int");
 
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
@@ -418,7 +400,7 @@ namespace EasyFinanceApi.Migrations
                     b.HasBaseType("EasyFinanceApi.Domain.Models.User");
 
                     b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.HasDiscriminator().HasValue("Customer");
 
@@ -503,15 +485,6 @@ namespace EasyFinanceApi.Migrations
                     b.HasOne("EasyFinanceApi.Domain.Models.Account", "Account")
                         .WithMany("Users")
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EasyFinanceApi.Domain.Models.Movement", b =>
-                {
-                    b.HasOne("EasyFinanceApi.Domain.Models.Type", "Type")
-                        .WithMany("Movements")
-                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

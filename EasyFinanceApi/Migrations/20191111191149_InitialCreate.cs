@@ -13,7 +13,7 @@ namespace EasyFinanceApi.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Key = table.Column<string>(nullable: false),
+                    Key = table.Column<string>(maxLength: 100, nullable: false),
                     Create_At = table.Column<DateTime>(nullable: false),
                     Payment = table.Column<bool>(nullable: false)
                 },
@@ -28,9 +28,9 @@ namespace EasyFinanceApi.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: false),
-                    Color = table.Column<string>(nullable: false),
-                    Image = table.Column<byte[]>(nullable: false)
+                    Name = table.Column<string>(maxLength: 60, nullable: false),
+                    Color = table.Column<string>(maxLength: 60, nullable: false),
+                    Image = table.Column<byte[]>(type: "image", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,19 +67,6 @@ namespace EasyFinanceApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Types",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 90, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Types", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -96,11 +83,11 @@ namespace EasyFinanceApi.Migrations
                     Account_Id = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     Description = table.Column<string>(maxLength: 200, nullable: true),
-                    Experience = table.Column<int>(maxLength: 60, nullable: true),
+                    Experience = table.Column<int>(nullable: true),
                     University = table.Column<string>(maxLength: 200, nullable: true),
                     Latitude = table.Column<double>(nullable: true),
                     Longitude = table.Column<double>(nullable: true),
-                    Birthday = table.Column<DateTime>(nullable: true)
+                    Birthday = table.Column<DateTime>(type: "date", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -209,17 +196,11 @@ namespace EasyFinanceApi.Migrations
                     Discriminator = table.Column<string>(nullable: false),
                     Period = table.Column<int>(nullable: true),
                     Reach_At = table.Column<DateTime>(nullable: true),
-                    Type_Id = table.Column<int>(nullable: true)
+                    Type = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Registries", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Registries_Types_Type_Id",
-                        column: x => x.Type_Id,
-                        principalTable: "Types",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Registries_Categories_Category_Id",
                         column: x => x.Category_Id,
@@ -281,11 +262,6 @@ namespace EasyFinanceApi.Migrations
                 column: "Advisor_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Registries_Type_Id",
-                table: "Registries",
-                column: "Type_Id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Registries_Category_Id",
                 table: "Registries",
                 column: "Category_Id");
@@ -320,9 +296,6 @@ namespace EasyFinanceApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Subscriptions");
-
-            migrationBuilder.DropTable(
-                name: "Types");
 
             migrationBuilder.DropTable(
                 name: "Categories");

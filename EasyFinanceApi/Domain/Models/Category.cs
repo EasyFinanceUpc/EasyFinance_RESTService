@@ -13,10 +13,13 @@ namespace EasyFinanceApi.Domain.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
+        [MaxLength(60)]
         public string Name { get; set; }
         [Required]
+        [MaxLength(60)]
         public string Color { get; set; }
         [Required]
+        [Column(TypeName = "image")]
         public byte[] Image { get; set; }
         public IList<Registry> Registries { get; set; } = new List<Registry>();
     }

@@ -12,6 +12,7 @@ namespace EasyFinanceApi.Domain.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string Key { get; set; }
         
         [Required]

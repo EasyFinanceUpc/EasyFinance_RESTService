@@ -1,7 +1,6 @@
 ﻿using System;
 using EasyFinanceApi.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Type = EasyFinanceApi.Domain.Models.Type;
 
 namespace EasyFinanceApi.Persistence.Context
 {
@@ -15,7 +14,6 @@ namespace EasyFinanceApi.Persistence.Context
         public DbSet<Membership> Memberships { get; set; }
         public DbSet<Registry> Registries { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
-        public DbSet<Type> Types { get; set; }
         public DbSet<User> Users { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }

@@ -1,7 +1,7 @@
 # EasyFinance RESTfull Api
 REST Service
 
-### Add Customer
+### Add Advisor Example
 
 {
 	"Email": "Javier@mail.com",
@@ -9,11 +9,38 @@ REST Service
 	"Name":"Javier",
 	"LastName": "Perez",
 	"Gender": 1,
-	"Active": true,
-	"Role": 1,
-	"Token": "a2sdf1a6d4fasd1fa4sd1f65a1sdfa1d5f4asd5fa6sdf",
-	"AccountId": 1,
-	"Birthday": "2019-11-05"
+	"Description": "This is an example description",
+	"Experience": 4,
+	"University": "University",
+	"Latitude": 12.1568141,
+	"Longuitude": -72.123646
+}
+
+### Add Customer Example (Owner)
+
+{
+	"Email": "usuario@mail.com",
+	"Password":"123456",
+	"Gender": 1,
+	"Birthday": "2000-01-12"
+}
+
+### Add Local Example (need to be authenticate with a Owner account)
+
+{
+	"Email": "Javier_local01@mail.com",
+	"Password":"123456",
+	"Name":"Javier",
+	"LastName": "Perez",
+	"Gender": 1,
+	"Birthday": "2000-01-12"
+}
+
+### Authenticate Example
+
+{
+	"Email": "julio@gmail.com",
+	"Password":"123456",
 }
 
 ### Authorization Database Diagram
