@@ -1,5 +1,6 @@
 ﻿using EasyFinanceApi.Domain.Models;
 using EasyFinanceApi.Domain.Services.Communication;
+using EasyFinanceApi.Resources.ToResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace EasyFinanceApi.Domain.Services
 {
-    public interface IAdvisorService
+    public interface IArticleService
     {
-        Task<SaveAdvisorResponse> SaveAsync(Advisor advisor);
-        Task<User> GetAdvisor(string email);
+        Task<IEnumerable<ArticleResource>> GetArticles();
+        Task<SaveArticleResponse> SaveArticle(Article article);
     }
 }

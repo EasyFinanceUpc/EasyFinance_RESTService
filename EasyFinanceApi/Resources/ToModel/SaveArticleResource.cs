@@ -17,7 +17,5 @@ namespace EasyFinanceApi.Resources.ToModel
         [MaxLength(200)]
         [MinLength(20)]
         public string Description { get; set; }
-        [Required]
-        public DateTime CreateAt { get; set; }
     }
 }

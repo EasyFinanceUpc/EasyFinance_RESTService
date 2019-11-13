@@ -25,6 +25,12 @@ namespace EasyFinanceApi.Domain.Services
             _accountSubscriptionRepository = accountSubscriptionRepository;
             _unitOfWork = unitOfWork;
         }
+
+        public async Task<User> GetAdvisor(string email)
+        {
+            return await _advisorRepository.GetAdvisor(email);
+        }
+
         public async Task<SaveAdvisorResponse> SaveAsync(Advisor advisor)
         {
             try

@@ -25,5 +25,32 @@ namespace EasyFinanceApi.Persistence.Repositories
             else
                 return false;
         }
+
+        public async Task<User> GetAdvisor(string email)
+        {
+            var advisors = await _context.Users.Where(x => x.Email == email).ToListAsync();
+           
+            if (advisors.Count > 0)
+            {
+                var advisor = advisors.FirstOrDefault();
+                return advisor;
+            }
+            else
+                return null;
+        }
+
+        public async Task<string> GetFullNameAdvisor(int id)
+        {
+            var advisors = await _context.Users.Where(x => x.Id == id).ToListAsync();
+            
+            if (advisors.Count > 0)
+            {
+                var advisor = advisors.FirstOrDefault();
+                var fullName = advisor.Name + " " + advisor.LastName;
+                return fullName;
+            }   
+            else
+                return null;
+        }
     }
 }

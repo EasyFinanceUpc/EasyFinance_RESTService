@@ -10,6 +10,8 @@ namespace EasyFinanceApi.Mapping
         {
             //CreateMap<Model, Response>();
             CreateMap<Subscription, SubscritptionResource>();
+            CreateMap<Article, ArticleResource>();
+            CreateMap<Article, ArticleOwnerResource>();
         }
     }
 }
