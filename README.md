@@ -3,7 +3,6 @@ REST Service
 with Swagger Documentation
 
 ### Add Advisor Example
-
 {
 	"Email": "Javier@mail.com",
 	"Password":"123456",
@@ -18,7 +17,6 @@ with Swagger Documentation
 }
 
 ### Add Customer Example (Owner)
-
 {
 	"Email": "usuario@mail.com",
 	"Password":"123456",
@@ -27,7 +25,6 @@ with Swagger Documentation
 }
 
 ### Add Local Example (need to be authenticate with a Owner account)
-
 {
 	"Email": "Javier_local01@mail.com",
 	"Password":"123456",
@@ -45,10 +42,8 @@ with Swagger Documentation
 }
 
 ### Authorization Database Diagram
-
 ALTER AUTHORIZATION ON DATABASE::EasyFinanceDb TO sa
 GO
 
 ### Token example
-
 https://jasonwatmore.com/post/2019/10/11/aspnet-core-3-jwt-authentication-tutorial-with-example-api
