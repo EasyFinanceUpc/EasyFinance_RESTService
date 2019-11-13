@@ -1,5 +1,6 @@
 # EasyFinance RESTfull Api
 REST Service
+with Swagger Documentation
 
 ### Add Advisor Example
 
