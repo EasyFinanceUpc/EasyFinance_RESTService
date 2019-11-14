@@ -18,9 +18,33 @@ namespace EasyFinanceApi.Persistence.Repositories
             await _context.Articles.AddAsync(article); 
         }
 
+        public async Task<Article> GetArticle(int id)
+        {
+            var result =  await _context.Articles.FindAsync(id);
+            if (result == null)
+                return null;
+            return result;
+        }
+
         public async Task<IEnumerable<Article>> GetArticles()
         {
             return await _context.Articles.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Article>> GetOwnerArticles(int id)
+        {
+            return await _context.Articles.Where(x => x.AdvisorId == id).ToListAsync();
+        }
+
+        public void Update(Article article)
+        {
+            _context.Entry(article).State = EntityState.Modified;
+            
+        }
+
+        public void Delete(Article article)
+        {
+            _context.Articles.Remove(article);
         }
     }
 }

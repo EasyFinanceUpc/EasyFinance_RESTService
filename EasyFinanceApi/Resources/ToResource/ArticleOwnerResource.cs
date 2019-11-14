@@ -11,5 +11,6 @@ namespace EasyFinanceApi.Resources.ToResource
         public string Title { get; set; }
         public string Body { get; set; }
         public string Description { get; set; }
-    }
+        public DateTime CreateAt { get; set; }
+}
 }

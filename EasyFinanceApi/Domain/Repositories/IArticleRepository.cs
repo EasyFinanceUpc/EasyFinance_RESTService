@@ -10,5 +10,9 @@ namespace EasyFinanceApi.Domain.Repositories
     {
         Task<IEnumerable<Article>> GetArticles();
         Task AddAsync(Article article);
+        Task<IEnumerable<Article>> GetOwnerArticles(int id);
+        Task<Article> GetArticle(int id);
+        void Update(Article article);
+        void Delete(Article article);
     }
 }

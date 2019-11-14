@@ -48,6 +48,17 @@ with Swagger Documentation
 	"Password":"123456",
 }
 ~~~
+
+### Article Example (Save & Update)
+
+~~~
+{
+	"Title": "Articulo 11",
+    "Body": "Este es el super articulo de prueba que deberia tener mas de 400 caracteres lo cual es bastante sin embargo se puede hacer esto escirbiendo todo lo que se piensa en ese momento. Hay que esperar que hasta este punto ya tenga 200 caracteres, pero uno nunca sabe, mejor sigo escribiendo un poco mas por si no se ha llegado a los 400 caracteres. supongo que ya deberia estar, procedere a contabilizarlo con el boton.",
+    "Description": "Pequeña descripcion del articulo 11"
+}
+~~~
+
 ### Authorization Database Diagram
 
 ALTER AUTHORIZATION ON DATABASE::EasyFinanceDb TO sa

@@ -37,8 +37,18 @@ namespace EasyFinanceApi.Controllers
             return await _articleService.GetArticles();
         }
 
+        [AllowAnonymous]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetArticle(int id)
+        {
+            var result = await _articleService.GetArticle(id);
+            if (result == null)
+                return NotFound();
+            return Ok(result);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> SaveAsyncArticle(SaveArticleResource resource)
+        public async Task<IActionResult> SaveAsyncArticle([FromBody] SaveArticleResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
@@ -58,25 +68,36 @@ namespace EasyFinanceApi.Controllers
             return Ok(articleResource);
         }
 
-        [HttpPut("/{id}")]
-        public async Task<IActionResult> UpdateAsyncArticle(int id)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsyncArticle(int id, [FromBody] SaveArticleResource resource)
         {
-            //update Article
-            return Ok();
+            var article = await _articleService.GetArticleResource(id);
+            if (article == null)
+                return NotFound();
+            var _result = _mapper.Map(resource, article);
+            var result = await _articleService.Update(_result);
+            if (!result.Success)
+                return BadRequest(result.Message);
+            var resultArticle = _mapper.Map<Article, ArticleOwnerResource>(result.Article);
+            return Ok(resultArticle);
         }
 
-        [HttpDelete("/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsyncArticle(int id)
         {
-            //delete Article
-            return Ok();
+            var result = await _articleService.Delete(id);
+            if (!result.Success)
+                return BadRequest(result.Message);
+            return Ok("Delete");
         }
 
-        [HttpGet("/owner")]
-        public async Task<IActionResult> GetArticlesByAdvisor()
+        [HttpGet("owner")]
+        public async Task<IEnumerable<ArticleOwnerResource>> GetArticlesByAdvisor()
         {
-            //getArticlesByAdvisor(email string)}return Ok();
-            return Ok();
+            var email = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals("Email", StringComparison.InvariantCultureIgnoreCase));
+            var advisor = await _advisorService.GetAdvisor(email.Value);
+            var results = await _articleService.GetArticleOwners(advisor.Id);
+            return results;
         }
     }
 }

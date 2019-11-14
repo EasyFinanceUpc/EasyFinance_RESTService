@@ -25,6 +25,29 @@ namespace EasyFinanceApi.Domain.Services
             _mapper = mapper;
         }
 
+        public async Task<Article> GetArticleResource(int id)
+        {
+            return await _articleRepository.GetArticle(id);
+        }
+
+        public async Task<ArticleResource> GetArticle(int id)
+        {
+            var article = await _articleRepository.GetArticle(id);
+            if (article == null)
+                return null;
+            var fullName = await _advisorRepository.GetFullNameAdvisor(article.AdvisorId);
+            var result = _mapper.Map<Article, ArticleResource>(article);
+            result.FullNameAdvisor = fullName;
+            return result;
+        }
+
+        public async Task<IEnumerable<ArticleOwnerResource>> GetArticleOwners(int id)
+        {
+            var articles = await _articleRepository.GetOwnerArticles(id);
+            var result = _mapper.Map<IEnumerable<Article>, IEnumerable<ArticleOwnerResource>>(articles);
+            return result;
+        }
+
         public async Task<IEnumerable<ArticleResource>> GetArticles()
         {
             var articles = await _articleRepository.GetArticles();
@@ -38,10 +61,44 @@ namespace EasyFinanceApi.Domain.Services
 
         public async Task<SaveArticleResponse> SaveArticle(Article article)
         {
-            article.CreateAt = DateTime.Now;
-            await _articleRepository.AddAsync(article);
-            await _unitOfWork.CompleteAsync();
-            return new SaveArticleResponse(article);
+            try
+            {
+                article.CreateAt = DateTime.Now;
+                await _articleRepository.AddAsync(article);
+                await _unitOfWork.CompleteAsync();
+                return new SaveArticleResponse(article);
+            } catch (Exception ex)
+            {
+                return new SaveArticleResponse($"An error occurred when saving the category: {ex.Message}");
+            }
+            
+        }
+
+        public async Task<SaveArticleResponse> Update(Article article)
+        {
+            try
+            {
+                _articleRepository.Update(article);
+                await _unitOfWork.CompleteAsync();
+                return new SaveArticleResponse(article);
+            } catch (Exception ex)
+            {
+                return new SaveArticleResponse($"An error occurred when saving the category: {ex.Message}");
+            }
+        }
+
+        public async Task<SaveArticleResponse> Delete(int id)
+        {
+            try
+            {
+                var article = await _articleRepository.GetArticle(id);
+                _articleRepository.Delete(article);
+                await _unitOfWork.CompleteAsync();
+                return new SaveArticleResponse(article);
+            }catch (Exception ex)
+            {
+                return new SaveArticleResponse($"An error occurred when saving the category: {ex.Message}");
+            }
         }
     }
 }
