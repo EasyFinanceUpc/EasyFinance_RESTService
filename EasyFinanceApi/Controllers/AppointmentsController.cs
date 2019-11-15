@@ -44,6 +44,7 @@ namespace EasyFinanceApi.Controllers
             return result;
         }
 
+        //for advisor
         [Authorize(Roles = "3")]
         [HttpGet("advisor")]
         public async Task<IEnumerable<AppointmentResource>> GetAppointmentsByAdvisor()
