@@ -106,6 +106,7 @@ namespace EasyFinanceApi.Controllers
             return Ok();
         }
 
+        //Update an Appointment
         [Authorize(Roles = "1,2")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAppointment(int id, [FromBody] SaveAppointmentResource resource)
