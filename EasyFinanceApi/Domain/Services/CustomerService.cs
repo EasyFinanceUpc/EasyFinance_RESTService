@@ -59,7 +59,7 @@ namespace EasyFinanceApi.Domain.Services
                 return new SaveCustomerResponse(customer);
             } catch (Exception ex)
             {
-                return new SaveCustomerResponse($"An error occurred when saving the category: {ex.Message}");
+                return new SaveCustomerResponse($"An error occurred when saving the customer: {ex.Message}");
             }
         }
 
@@ -81,9 +81,14 @@ namespace EasyFinanceApi.Domain.Services
                 return new SaveCustomerResponse(customer);
             } catch (Exception ex)
             {
-                return new SaveCustomerResponse($"An error occurred when saving the category: {ex.Message}");
+                return new SaveCustomerResponse($"An error occurred when saving the local: {ex.Message}");
             }
             
+        }
+
+        public async Task<User> GetCustomer(string email)
+        {
+            return await _customerRepository.GetCustomerEmail(email);
         }
     }
 }

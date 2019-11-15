@@ -27,6 +27,20 @@ namespace EasyFinanceApi.Persistence.Repositories
                 return false;
         }
 
+        public async Task<string> GetCustomerFullName(int id)
+        {
+            var customers = await _context.Users.Where(x => x.Id == id).ToListAsync();
+
+            if (customers.Count > 0)
+            {
+                var customer = customers.FirstOrDefault();
+                var fullName = customer.Name + " " + customer.LastName;
+                return fullName;
+            }
+            else
+                return null;
+        }
+
         public async Task<int> GetOwnerAccountId(string email)
         {
             var customers = await _context.Users.Where(x => x.Email == email).ToListAsync();
@@ -34,6 +48,28 @@ namespace EasyFinanceApi.Persistence.Repositories
                 return 0;
             var owner = customers.FirstOrDefault();
             return owner.Id;
+        }
+
+        public async Task<User> GetCustomer(int id)
+        {
+            var customer = await _context.Users.FindAsync(id);
+            if (customer == null)
+                return null;
+            else
+                return customer;
+        }
+
+        public async Task<User> GetCustomerEmail(string email)
+        {
+            var customers = await _context.Users.Where(x => x.Email == email).ToListAsync();
+
+            if (customers.Count > 0)
+            {
+                var customer = customers.FirstOrDefault();
+                return customer;
+            }
+            else
+                return null;
         }
     }
 }

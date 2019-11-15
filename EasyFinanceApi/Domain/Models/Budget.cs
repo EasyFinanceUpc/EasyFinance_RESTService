@@ -9,5 +9,6 @@ namespace EasyFinanceApi.Domain.Models
     public class Budget : Registry
     {
         public EPeriod Period { get; set; }
+        public float Save { get; set; }
     }
 }

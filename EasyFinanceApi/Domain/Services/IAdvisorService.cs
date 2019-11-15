@@ -10,5 +10,6 @@ namespace EasyFinanceApi.Domain.Services
     public interface IAdvisorService
     {
         Task<SaveAdvisorResponse> SaveAsync(Advisor advisor);
+        Task<User> GetAdvisor(string email);
     }
 }

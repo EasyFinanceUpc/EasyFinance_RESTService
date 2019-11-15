@@ -25,6 +25,12 @@ namespace EasyFinanceApi.Domain.Services
             _accountSubscriptionRepository = accountSubscriptionRepository;
             _unitOfWork = unitOfWork;
         }
+
+        public async Task<User> GetAdvisor(string email)
+        {
+            return await _advisorRepository.GetAdvisor(email);
+        }
+
         public async Task<SaveAdvisorResponse> SaveAsync(Advisor advisor)
         {
             try
@@ -53,7 +59,7 @@ namespace EasyFinanceApi.Domain.Services
 
             } catch (Exception ex)
             {
-                return new SaveAdvisorResponse($"An error occurred when saving the category: {ex.Message}");
+                return new SaveAdvisorResponse($"An error occurred when saving the advisor: {ex.Message}");
             }
         }
     }
