@@ -59,7 +59,7 @@ with Swagger Documentation
 }
 ~~~
 
-### Appointment Example (Save)
+### Appointment Example (Save & Update)
 
 ~~~
 {
