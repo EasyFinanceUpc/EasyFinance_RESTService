@@ -73,7 +73,7 @@ namespace EasyFinanceApi.Controllers
             return await _appointmentService.GetAppointmentAdvisor(id);
         }
 
-        //Cancel appointments
+        //Cancel Appointments
         [Authorize(Roles = "1,2,3")]
         [HttpPut("cancel/{id}")]
         public async Task<IActionResult> CancelAppointment(int id)
@@ -88,6 +88,7 @@ namespace EasyFinanceApi.Controllers
             return Ok();
         }
 
+        //Save an Appointment
         [Authorize(Roles = "1,2")]
         [HttpPost("advisor/{id}")]
         public async Task<IActionResult> SaveAppointment(int id, [FromBody] SaveAppointmentResource resource)
@@ -105,6 +106,7 @@ namespace EasyFinanceApi.Controllers
             return Ok();
         }
 
+        //Update an Appointment
         [Authorize(Roles = "1,2")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAppointment(int id, [FromBody] SaveAppointmentResource resource)
@@ -120,6 +122,7 @@ namespace EasyFinanceApi.Controllers
             return Ok();
         }
 
+        //Delete Appointment only if is cancel
         [Authorize(Roles = "1,3")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAppointment(int id)
