@@ -31,6 +31,7 @@ namespace EasyFinanceApi.Controllers
             _mapper = mapper;
         }
 
+        //For customer
         [Authorize(Roles = "1,2")]
         [HttpGet("customer")]
         public async Task<IEnumerable<AppointmentResource>> GetAppointmentsByCustomer()
