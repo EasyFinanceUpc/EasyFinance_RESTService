@@ -73,6 +73,7 @@ namespace EasyFinanceApi.Controllers
             return await _appointmentService.GetAppointmentAdvisor(id);
         }
 
+        //Cancel appointments
         [Authorize(Roles = "1,2,3")]
         [HttpPut("cancel/{id}")]
         public async Task<IActionResult> CancelAppointment(int id)
