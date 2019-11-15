@@ -122,7 +122,7 @@ namespace EasyFinanceApi.Controllers
             return Ok();
         }
 
-        //Delete Appointment
+        //Delete Appointment only if is cancel
         [Authorize(Roles = "1,3")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAppointment(int id)
