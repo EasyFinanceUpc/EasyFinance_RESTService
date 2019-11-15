@@ -71,6 +71,8 @@ namespace EasyFinanceApi
             services.AddScoped<IAdvisorService, AdvisorService>();
             services.AddScoped<IArticleRepository, ArticleRepository>();
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
      

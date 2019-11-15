@@ -52,5 +52,16 @@ namespace EasyFinanceApi.Persistence.Repositories
             else
                 return null;
         }
+
+        public async Task<User> GetAdvisor(int id)
+        {
+            var advisor = await _context.Users.FindAsync(id);
+            if (advisor == null)
+                return null;
+            else
+                return advisor;
+        }
+
+
     }
 }

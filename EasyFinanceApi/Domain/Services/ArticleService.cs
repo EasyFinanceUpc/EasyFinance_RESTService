@@ -69,7 +69,7 @@ namespace EasyFinanceApi.Domain.Services
                 return new SaveArticleResponse(article);
             } catch (Exception ex)
             {
-                return new SaveArticleResponse($"An error occurred when saving the category: {ex.Message}");
+                return new SaveArticleResponse($"An error occurred when saving the article: {ex.Message}");
             }
             
         }
@@ -83,7 +83,7 @@ namespace EasyFinanceApi.Domain.Services
                 return new SaveArticleResponse(article);
             } catch (Exception ex)
             {
-                return new SaveArticleResponse($"An error occurred when saving the category: {ex.Message}");
+                return new SaveArticleResponse($"An error occurred when update the article: {ex.Message}");
             }
         }
 
@@ -97,7 +97,7 @@ namespace EasyFinanceApi.Domain.Services
                 return new SaveArticleResponse(article);
             }catch (Exception ex)
             {
-                return new SaveArticleResponse($"An error occurred when saving the category: {ex.Message}");
+                return new SaveArticleResponse($"An error occurred when delete the article: {ex.Message}");
             }
         }
     }

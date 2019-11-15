@@ -59,7 +59,7 @@ namespace EasyFinanceApi.Domain.Services
 
             } catch (Exception ex)
             {
-                return new SaveAdvisorResponse($"An error occurred when saving the category: {ex.Message}");
+                return new SaveAdvisorResponse($"An error occurred when saving the advisor: {ex.Message}");
             }
         }
     }

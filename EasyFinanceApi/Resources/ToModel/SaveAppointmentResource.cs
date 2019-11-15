@@ -7,9 +7,5 @@ namespace EasyFinanceApi.Resources.ToModel
     {
         [Required]
         public DateTime Date { get; set; }
-        [Required]
-        public int Status { get; set; }
-        [Required]
-        public int AdvisorId { get; set; }
     }
 }

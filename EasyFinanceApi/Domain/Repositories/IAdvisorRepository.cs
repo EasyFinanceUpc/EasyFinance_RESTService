@@ -12,5 +12,6 @@ namespace EasyFinanceApi.Domain.Repositories
         Task<bool> ExistEmail(Advisor advisor);
         Task<User> GetAdvisor(string email);
         Task<string> GetFullNameAdvisor(int id);
+        Task<User> GetAdvisor(int id);
     }
 }

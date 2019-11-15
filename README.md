@@ -59,6 +59,14 @@ with Swagger Documentation
 }
 ~~~
 
+### Appointment Example (Save)
+
+~~~
+{
+	"date": "2019-11-16T14:20:00"
+}
+~~~
+
 ### Authorization Database Diagram
 
 ALTER AUTHORIZATION ON DATABASE::EasyFinanceDb TO sa
