@@ -9,7 +9,7 @@ namespace EasyFinanceApi.Resources.ToResource
     public class AppointmentResource
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime ScheduleAt { get; set; }
         public EStatus Status { get; set; }
         public int AdvisorId { get; set; }
         public string AdvisorName { get; set; }

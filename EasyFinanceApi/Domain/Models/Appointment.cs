@@ -12,7 +12,8 @@ namespace EasyFinanceApi.Domain.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+        [Column("Schedule_Id")]
+        public DateTime ScheduleAt { get; set; }
         public EStatus Status { get; set; }
         [Column("Advisor_Id")]
         public int AdvisorId { get; set; }

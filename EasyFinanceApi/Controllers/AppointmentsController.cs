@@ -79,7 +79,7 @@ namespace EasyFinanceApi.Controllers
         public async Task<IActionResult> CancelAppointment(int id)
         {
             var appointment = await _appointmentService.GetAppointment(id);
-            if (appointment.Date < DateTime.Now.AddDays(3))
+            if (appointment.ScheduleAt < DateTime.Now.AddDays(3))
                 return BadRequest("Pass Cancel Time");
             appointment.Status = EStatus.Cancel;
             var result = await _appointmentService.UpdateAsync(appointment, id);
@@ -112,7 +112,7 @@ namespace EasyFinanceApi.Controllers
         public async Task<IActionResult> UpdateAppointment(int id, [FromBody] SaveAppointmentResource resource)
         {
             var _appointment = await _appointmentService.GetAppointment(id);
-            if (_appointment.Date < DateTime.Now.AddDays(1))
+            if (_appointment.ScheduleAt < DateTime.Now.AddDays(1))
                 return BadRequest("Pass Update Time");
 
             var appointment = _mapper.Map(resource, _appointment);
