@@ -11,5 +11,6 @@ namespace EasyFinanceApi.Controllers
     [ApiController]
     public class AdvisorsController : ControllerBase
     {
+
     }
 }
