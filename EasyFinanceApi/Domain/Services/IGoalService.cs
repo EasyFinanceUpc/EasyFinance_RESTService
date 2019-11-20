@@ -1,5 +1,6 @@
 ﻿using EasyFinanceApi.Domain.Models;
 using EasyFinanceApi.Domain.Services.Communication;
+using EasyFinanceApi.Resources.ToResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace EasyFinanceApi.Domain.Services
     public interface IGoalService
     {
         Task<SaveGoalResponse> AddGoal(Goal goal);
+        Task<IEnumerable<GoalResource>> GetGoals(int id);
     }
 }

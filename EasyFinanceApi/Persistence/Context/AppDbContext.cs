@@ -15,6 +15,7 @@ namespace EasyFinanceApi.Persistence.Context
         public DbSet<Registry> Registries { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Goal> Goals { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
