@@ -15,14 +15,14 @@ namespace EasyFinanceApi.Controllers
     [Authorize(Roles = "1")]
     [Route("api/[controller]")]
 
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationsController : ControllerBase
     {
         private readonly ICustomerService _customerService;
         private readonly IUserService _userService;
         private readonly IAdvisorService _advisorService;
         private readonly IMapper _mapper;
 
-        public AuthenticationController(ICustomerService customerService, IUserService userService, IAdvisorService advisorService, IMapper mapper)
+        public AuthenticationsController(ICustomerService customerService, IUserService userService, IAdvisorService advisorService, IMapper mapper)
         {
             _customerService = customerService;
             _userService = userService;
@@ -65,7 +65,7 @@ namespace EasyFinanceApi.Controllers
             return Ok();
         }
 
-        [HttpPost("signup/local")]
+        [HttpPost("signup/locals")]
         public async Task<IActionResult> SignUpLocal([FromBody] SignUpCustomerLocalResource resource)
         {
              if (!ModelState.IsValid)
@@ -80,12 +80,12 @@ namespace EasyFinanceApi.Controllers
             return Ok("Local Register");
         }
 
-        [HttpGet("test")]
+        /*[HttpGet("test")]
         public async Task<IActionResult> Test01()
         {
             var token = Request.Headers["Authorization"];
 
             return Ok(token + " ");
-        }
+        }*/
     }
 }

@@ -91,7 +91,7 @@ namespace EasyFinanceApi.Controllers
             return Ok("Delete");
         }
 
-        [HttpGet("owner")]
+        [HttpGet("owners")]
         public async Task<IEnumerable<ArticleOwnerResource>> GetArticlesByAdvisor()
         {
             var email = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals("Email", StringComparison.InvariantCultureIgnoreCase));

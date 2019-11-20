@@ -17,9 +17,24 @@ namespace EasyFinanceApi.Persistence.Repositories
             await _context.Registries.AddAsync(goal);
         }
 
+        public void Delete(Goal goal)
+        {
+            _context.Goals.Remove(goal);
+        }
+
+        public async Task<Goal> GetGoal(int id)
+        {
+            return await _context.Goals.FindAsync(id);
+        }
+
         public async Task<IEnumerable<Goal>> GetGoals(int id)
         {
             return await _context.Goals.Where(x => x.CustomerId == id).ToListAsync();
+        }
+
+        public void Update(Goal goal)
+        {
+            _context.Entry(goal).State = EntityState.Modified;
         }
     }
 }

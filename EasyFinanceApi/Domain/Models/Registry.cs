@@ -18,7 +18,9 @@ namespace EasyFinanceApi.Domain.Models
         public DateTime CreateAt { get; set; }
 
         [Required]
-        public float Amount { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        [DisplayFormat(DataFormatString = "{0:N}")]
+        public decimal Amount { get; set; }
         
         [MaxLength(100)]
         public string Note { get; set; }

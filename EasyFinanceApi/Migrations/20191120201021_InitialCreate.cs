@@ -189,7 +189,7 @@ namespace EasyFinanceApi.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Create_At = table.Column<DateTime>(nullable: false),
-                    Amount = table.Column<float>(nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Note = table.Column<string>(maxLength: 100, nullable: true),
                     Customer_Id = table.Column<int>(nullable: false),
                     Category_Id = table.Column<int>(nullable: false),

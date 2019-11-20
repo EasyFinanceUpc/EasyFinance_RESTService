@@ -9,7 +9,7 @@ namespace EasyFinanceApi.Resources.ToModel
     public class SaveGoalResource
     {
         [Required]
-        public float Amount { get; set; }
+        public decimal Amount { get; set; }
 
         [MaxLength(100)]
         public string Note { get; set; }

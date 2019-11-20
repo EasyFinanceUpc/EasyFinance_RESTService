@@ -1,4 +1,4 @@
-# EasyFinance RESTfull Api
+# EasyFinance RESTful Api
 REST Service
 with Swagger Documentation
 

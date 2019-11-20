@@ -40,17 +40,46 @@ namespace EasyFinanceApi.Domain.Services
             }
         }
 
+        public async Task<SaveGoalResponse> Delete(int id)
+        {
+            try
+            {
+                var goal = await _goalRepository.GetGoal(id);
+                _goalRepository.Delete(goal);
+                await _unitOfWork.CompleteAsync();
+                return new SaveGoalResponse(goal);
+            }catch(Exception ex)
+            {
+                return new SaveGoalResponse($"An error occurred when delete the article: {ex.Message}");
+            }
+        }
+
         public async Task<IEnumerable<GoalResource>> GetGoals(int id)
         {
             var goals = await _goalRepository.GetGoals(id);
             var response = _mapper.Map<IEnumerable<Goal>, IEnumerable<GoalResource>>(goals);
             foreach(GoalResource goal in response)
             {
-                var catergory = await _categoryRepository.GetCategory(1);
+                var catergory = await _categoryRepository.GetCategory(goal.Id);
                 goal.CategoryName = catergory.Name;
-                
+                goal.Color = catergory.Color;
             }
-            return null;
+            return response;
+        }
+
+        public async Task<SaveGoalResponse> Update(int id)
+        {
+            try
+            {
+                var goal = await _goalRepository.GetGoal(id);
+                goal.ReachAt = DateTime.Now;
+                _goalRepository.Update(goal);
+                await _unitOfWork.CompleteAsync();
+                return new SaveGoalResponse(goal);
+            } catch(Exception ex)
+            {
+                return new SaveGoalResponse($"An error occurred when delete the article: {ex.Message}");
+            }
         }
     }
 }

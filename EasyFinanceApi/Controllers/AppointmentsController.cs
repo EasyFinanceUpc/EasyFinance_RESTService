@@ -33,7 +33,7 @@ namespace EasyFinanceApi.Controllers
 
         //For customer
         [Authorize(Roles = "1,2")]
-        [HttpGet("customer")]
+        [HttpGet("customers")]
         public async Task<IEnumerable<AppointmentResource>> GetAppointmentsByCustomer()
         {
             var email = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals("Email", StringComparison.InvariantCultureIgnoreCase));
@@ -44,9 +44,17 @@ namespace EasyFinanceApi.Controllers
             return result;
         }
 
+        //for customer use
+        [Authorize(Roles = "1,2")]
+        [HttpGet("customers/{id}")]
+        public async Task<AppointmentResource> GetAppointmentCustomer(int id)
+        {
+            return await _appointmentService.GetAppointmentCustomer(id);
+        }
+
         //for advisor
         [Authorize(Roles = "3")]
-        [HttpGet("advisor")]
+        [HttpGet("advisors")]
         public async Task<IEnumerable<AppointmentResource>> GetAppointmentsByAdvisor()
         {
             var email = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals("Email", StringComparison.InvariantCultureIgnoreCase));
@@ -57,20 +65,30 @@ namespace EasyFinanceApi.Controllers
             return result;
         }
 
-        //for customer use
-        [Authorize(Roles = "1,2")]
-        [HttpGet("customer/{id}")]
-        public async Task<AppointmentResource> GetAppointmentCustomer(int id)
-        {
-            return await _appointmentService.GetAppointmentCustomer(id);
-        }
-
         //for advisor use
         [Authorize(Roles = "3")]
-        [HttpGet("advisor/{id}")]
+        [HttpGet("advisors/{id}")]
         public async Task<AppointmentResource> GetAppointmentAdvisor(int id)
         {
             return await _appointmentService.GetAppointmentAdvisor(id);
+        }
+
+        //Save an Appointment
+        [Authorize(Roles = "1,2")]
+        [HttpPost("advisors/{id}")]
+        public async Task<IActionResult> SaveAppointment(int id, [FromBody] SaveAppointmentResource resource)
+        {
+            var email = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals("Email", StringComparison.InvariantCultureIgnoreCase));
+            if (email == null)
+                return BadRequest("Claim Error");
+            var customer = await _customerService.GetCustomer(email.Value);
+            var appointment = _mapper.Map<SaveAppointmentResource, Appointment>(resource);
+            appointment.CustomerId = customer.Id;
+            appointment.AdvisorId = id;
+            var result = await _appointmentService.SaveAsync(appointment);
+            if (!result.Success)
+                return BadRequest(result.Message);
+            return Ok();
         }
 
         //Cancel Appointments
@@ -83,24 +101,6 @@ namespace EasyFinanceApi.Controllers
                 return BadRequest("Pass Cancel Time");
             appointment.Status = EStatus.Cancel;
             var result = await _appointmentService.UpdateAsync(appointment, id);
-            if (!result.Success)
-                return BadRequest(result.Message);
-            return Ok();
-        }
-
-        //Save an Appointment
-        [Authorize(Roles = "1,2")]
-        [HttpPost("advisor/{id}")]
-        public async Task<IActionResult> SaveAppointment(int id, [FromBody] SaveAppointmentResource resource)
-        {
-            var email = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals("Email", StringComparison.InvariantCultureIgnoreCase));
-            if (email == null)
-                return BadRequest("Claim Error");
-            var customer = await _customerService.GetCustomer(email.Value);
-            var appointment = _mapper.Map<SaveAppointmentResource, Appointment>(resource);
-            appointment.CustomerId = customer.Id;
-            appointment.AdvisorId = id;
-            var result = await _appointmentService.SaveAsync(appointment);
             if (!result.Success)
                 return BadRequest(result.Message);
             return Ok();

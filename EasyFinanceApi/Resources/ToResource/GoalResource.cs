@@ -7,8 +7,9 @@ namespace EasyFinanceApi.Resources.ToResource
 {
     public class GoalResource
     {
+        public int Id { get; set; }
         public DateTime CreateAt { get; set; }
-        public float Amount { get; set; }
+        public decimal Amount { get; set; }
         public string Note { get; set; }
         public string CategoryName { get; set; }
         public string Color { get; set; }

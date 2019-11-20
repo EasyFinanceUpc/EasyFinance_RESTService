@@ -33,6 +33,9 @@ namespace EasyFinanceApi
             services.AddCors();
             services.AddControllers();
 
+            //Controller lowercase
+            services.AddRouting(options => options.LowercaseUrls = true);
+
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
@@ -73,6 +76,9 @@ namespace EasyFinanceApi
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IGoalRepository, GoalRepository>();
+            services.AddScoped<IGoalService, GoalService>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
      

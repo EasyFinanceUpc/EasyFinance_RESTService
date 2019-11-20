@@ -12,5 +12,7 @@ namespace EasyFinanceApi.Domain.Services
     {
         Task<SaveGoalResponse> AddGoal(Goal goal);
         Task<IEnumerable<GoalResource>> GetGoals(int id);
+        Task<SaveGoalResponse> Delete(int id);
+        Task<SaveGoalResponse> Update(int id);
     }
 }

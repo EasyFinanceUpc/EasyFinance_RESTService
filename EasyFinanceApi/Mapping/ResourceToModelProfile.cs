@@ -18,6 +18,7 @@ namespace EasyFinanceApi.Mapping
             CreateMap<SaveArticleResource, Article>();
             CreateMap<SaveAppointmentResource, Appointment>();
             CreateMap<Appointment, Appointment>();
+            CreateMap<SaveGoalResource, Goal>();
         }
     }
 }

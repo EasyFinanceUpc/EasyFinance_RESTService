@@ -10,5 +10,8 @@ namespace EasyFinanceApi.Domain.Repositories
     {
         Task AddAsync(Goal goal);
         Task<IEnumerable<Goal>> GetGoals(int id);
+        Task<Goal> GetGoal(int id);
+        void Delete(Goal goal);
+        void Update(Goal goal);
     }
 }
