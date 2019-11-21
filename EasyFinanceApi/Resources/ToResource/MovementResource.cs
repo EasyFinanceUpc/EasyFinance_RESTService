@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EasyFinanceApi.Resources.ToResource
 {
-    public class GoalResource
+    public class MovementResource
     {
         public int Id { get; set; }
         public DateTime CreateAt { get; set; }
@@ -14,6 +14,7 @@ namespace EasyFinanceApi.Resources.ToResource
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string Color { get; set; }
-        public DateTime ReachAt { get; set; }
+        public int Type { get; set; }
+        public string TypeName { get; set; }
     }
 }

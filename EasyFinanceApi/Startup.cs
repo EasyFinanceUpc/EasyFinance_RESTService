@@ -79,6 +79,8 @@ namespace EasyFinanceApi
             services.AddScoped<IGoalRepository, GoalRepository>();
             services.AddScoped<IGoalService, GoalService>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IMovementRepository, MovementRepository>();
+            services.AddScoped<IMovementService, MovementService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
      

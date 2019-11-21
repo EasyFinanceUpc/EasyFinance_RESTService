@@ -60,7 +60,7 @@ namespace EasyFinanceApi.Domain.Services
             var response = _mapper.Map<IEnumerable<Goal>, IEnumerable<GoalResource>>(goals);
             foreach(GoalResource goal in response)
             {
-                var catergory = await _categoryRepository.GetCategory(goal.Id);
+                var catergory = await _categoryRepository.GetCategory(goal.CategoryId);
                 goal.CategoryName = catergory.Name;
                 goal.Color = catergory.Color;
             }
